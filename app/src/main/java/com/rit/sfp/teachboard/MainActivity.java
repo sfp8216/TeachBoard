@@ -1,4 +1,4 @@
-package com.rit.sfp.teachboard;
+/*package com.rit.sfp.teachboard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,3 +57,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+*/

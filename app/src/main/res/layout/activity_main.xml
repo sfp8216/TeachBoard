@@ -16,24 +16,16 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </TabWidget>
-
             <FrameLayout
-                android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="200dp"
+                android:layout_weight="0"
+                android:id="@android:id/tabcontent">
                 <LinearLayout
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
@@ -56,14 +48,14 @@
 
                     <Button
                         android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:id="@+id/submitChat"
                         tools:text="Send" />
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:inputType="textPersonName"
                         android:text="Name"
                         android:ems="10"
@@ -83,6 +75,20 @@
                         android:text="ToolView" />
                 </LinearLayout>
             </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TabWidget>
+
+
+
         </LinearLayout>
     </TabHost>
 </RelativeLayout>

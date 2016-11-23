@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -9,86 +9,102 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.rit.sfp.teachboard.MainActivity">
-    <TabHost
-        android:id="@+id/tabHost"
+    tools:context="com.rit.sfp.teachboard.MainActivity"
+    android:orientation="vertical">
+
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="149dp"
+        class="com.rit.sfp.teachboard.WhiteboardView"
+        android:id="@+id/view2" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-        <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TabHost
+            android:id="@+id/tabHost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <FrameLayout
+            android:layout_centerHorizontal="true">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_weight="0"
-                android:id="@android:id/tabcontent">
-                <LinearLayout
-                    android:id="@+id/tab1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <view
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        class="com.rit.sfp.teachboard.WhiteboardView"
-                        android:id="@+id/whiteboardView" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#da8200"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:text="Button"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:id="@+id/submitChat"
-                        tools:text="Send" />
-
-                    <EditText
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:inputType="textPersonName"
-                        android:text="Name"
-                        android:ems="10"
-                        android:id="@+id/chatMessage" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#5b89ff"
-                    android:orientation="vertical">
-
-                    <TextView
+                    android:layout_height="200dp"
+                    android:layout_weight="0"
+                    android:id="@android:id/tabcontent">
+                    <LinearLayout
+                        android:id="@+id/tab1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="ToolView" />
-                </LinearLayout>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+                        android:orientation="vertical">
+                        <view
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            class="com.rit.sfp.teachboard.WhiteboardView"
+                            android:id="@+id/whiteboardView" />
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    </LinearLayout>
 
-            </TabWidget>
+                    <LinearLayout
+                        android:id="@+id/tab2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#da8200"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:text="Button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/submitChat"
+                            tools:text="Send" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:text="Name"
+                            android:ems="10"
+                            android:id="@+id/chatMessage" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tab3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#5b89ff"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="ToolView" />
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TabWidget>
 
 
 
-        </LinearLayout>
-    </TabHost>
-</RelativeLayout>
+            </LinearLayout>
+        </TabHost>
+
+    </LinearLayout>
+
+
+</LinearLayout>

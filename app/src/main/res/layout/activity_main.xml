@@ -12,11 +12,11 @@
     tools:context="com.rit.sfp.teachboard.MainActivity"
     android:orientation="vertical">
 
-    <view
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="149dp"
         class="com.rit.sfp.teachboard.WhiteboardView"
-        android:id="@+id/view2" />
+        android:id="@+id/whiteBoardView" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,11 +43,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                        <view
+
+                        <Button
+                            android:text="SendChat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:id="@+id/submitChat"
+                            tools:text="Send" />
+
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            class="com.rit.sfp.teachboard.WhiteboardView"
-                            android:id="@+id/whiteboardView" />
+                            android:layout_height="50dp"
+                            android:inputType="textPersonName"
+                            android:text="Name"
+                            android:ems="10"
+                            android:id="@+id/chatMessage" />
+
 
                     </LinearLayout>
 
@@ -58,34 +69,88 @@
                         android:background="#da8200"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@android:drawable/arrow_up_float"
+                            android:id="@+id/testImageView" />
+
                         <Button
-                            android:text="Button"
+                            android:text="Shapes"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/submitChat"
+                            android:layout_height="50dp"
+                            android:id="@+id/Shapes"
                             tools:text="Send" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="textPersonName"
-                            android:text="Name"
-                            android:ems="10"
-                            android:id="@+id/chatMessage" />
+                        <Button
+                            android:text="Colors"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:id="@+id/ColorsBtn"
+                            tools:text="Send" />
+                        <Button
+                            android:text="Sizes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:id="@+id/Sizes"
+                            tools:text="Send" />
                     </LinearLayout>
-
+                   <!--
+                   <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        -->
                     <LinearLayout
                         android:id="@+id/tab3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#5b89ff"
+                        android:background="#da8200"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="ToolView" />
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:text="Board Name"
+                            android:ems="10"
+                            android:id="@+id/boardName" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:text="Owner"
+                            android:ems="10"
+                            android:id="@+id/boardOwner" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:text="Public"
+                            android:ems="10"
+                            android:id="@+id/boardStatus" />
+
+                        <Button
+                            android:text="Create Board"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/createBoardBtn" />
+
+                        <Button
+                            android:text="View Structure"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/showDatabase" />
+                        <Button
+                            android:text="View Data"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/showData" />
                     </LinearLayout>
+                 <!--
+                 </ScrollView>
+                 -->
                 </FrameLayout>
                 <FrameLayout
                     android:layout_width="match_parent"

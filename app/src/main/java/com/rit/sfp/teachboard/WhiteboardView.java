@@ -12,6 +12,7 @@ import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,7 +33,7 @@ public class WhiteboardView extends ImageView{
     private Path path = new Path();
     DatabaseHelper myDb;
 
-    private ImageView whiteBoardView = (ImageView) findViewById(R.id.whiteBoardView);
+    private WhiteboardView whiteBoardView = (WhiteboardView) findViewById(R.id.whiteBoardView);
 
 
     // setup initial color
@@ -48,15 +49,6 @@ public class WhiteboardView extends ImageView{
     public WhiteboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-
-
-
-        
-
-
-
-
-
         ImageView testView = (ImageView) findViewById(R.id.testImageView);
 
           setupPaint(); // same as before
@@ -64,13 +56,13 @@ public class WhiteboardView extends ImageView{
         if(!isInEditMode()) {
             myDb = new DatabaseHelper(getContext());
         }
-
+        Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
+        whiteBoardView.setBackground(new BitmapDrawable(getResources(),bitmap));
     }
 
     // Draw each circle onto the view
     @Override
     protected void onDraw(Canvas canvas) {
-
         canvas.drawPath(path,drawPaint);
 
         //   for (Point p : circlePoints) {
@@ -106,16 +98,13 @@ try {
             case MotionEvent.ACTION_UP:
                 whiteBoardView.buildDrawingCache();
                 Bitmap signature = whiteBoardView.getDrawingCache();
-
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 signature.compress(Bitmap.CompressFormat.PNG,100,stream);
-                byte[] byteArray = stream.toByteArray();
-                Log.i("Byte array length", "Counter" + byteArray.length);
-                try {
-                    saveImageToDatabase(1, 1, byteArray);
-                }catch(SQLiteConstraintException e){
-
-                }
+                signature.getByteCount();
+                Log.i("Byte array length", "Counter" + signature.getByteCount());
+                myDb.saveBoardAsImage(1, 1, stream.toByteArray());
+                signature.recycle();
+                whiteBoardView.destroyDrawingCache();
                 break;
             default: return false;
         }
@@ -125,6 +114,8 @@ try {
 
         return true;
     }
+
+
 
     private void setupPaint() {
         drawPaint = new Paint();

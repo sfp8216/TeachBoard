@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +20,15 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     TabHost tabHost;
     EditText boardName, boardOwner, boardStatus;
-    Button createBoardBtn, getDataBtn, getBoardDataBtn, colorsBtn;
-    ImageView testView, whiteboardView;
+    Button createBoardBtn, getDataBtn, getBoardDataBtn, colorsBtn, shapesBtn;
+    ImageView testView;
+    WhiteboardView whiteboardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
         getDataBtn = (Button) findViewById(R.id.showDatabase);
         getBoardDataBtn = (Button) findViewById(R.id.showData);
         testView = (ImageView) findViewById(R.id.testImageView);
-        whiteboardView = (ImageView) findViewById(R.id.whiteBoardView);
+        whiteboardView = (WhiteboardView) findViewById(R.id.whiteBoardView);
+        shapesBtn =(Button)findViewById(R.id.Shapes);
         createBoard();
         showAllDatabase();
         showBoardData();
         changeImage();
+        saveImage();
     }
 
     public void createBoard(){
@@ -83,6 +90,26 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    public void saveImage(){
+        shapesBtn.setOnClickListener(
+                new View.OnClickListener(){
+                    Bitmap signature = null;
+                    ByteArrayOutputStream stream = null;
+                    @Override
+                    public void onClick(View v){
+                        whiteboardView.buildDrawingCache();
+                        signature = whiteboardView.getDrawingCache();
+                        stream = new ByteArrayOutputStream();
+                        signature.compress(Bitmap.CompressFormat.PNG,100,stream);
+                        signature.getByteCount();
+                        Log.i("Byte array length", "Counter" + signature.getByteCount());
+                        myDb.saveBoardAsImage(1, 1, stream.toByteArray());
+                        signature.recycle();
+                        whiteboardView.destroyDrawingCache();
+                    }
+                }
+        );
+    }
 
 
     public void changeImage() {
@@ -90,14 +117,17 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Drawable drawable = null;
                         //load the image from the db
                         Cursor res = myDb.getImageData();
                         while (res.moveToNext()) {
                             byte[] byteArray = res.getBlob(0);
+                            Log.i("Image length","Length-->" + byteArray.length);
                             Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                            testView.setImageBitmap(bm);
+                             drawable = new BitmapDrawable(getResources(),bm);
+                            whiteboardView.setBackground(drawable);
 
-
-                            whiteboardView.setImageBitmap(bm);
                         }
                         res.close();
                     }

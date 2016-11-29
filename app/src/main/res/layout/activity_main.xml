@@ -12,7 +12,7 @@
     tools:context="com.rit.sfp.teachboard.MainActivity"
     android:orientation="vertical">
 
-    <ImageView
+    <com.rit.sfp.teachboard.WhiteboardView
         android:layout_width="wrap_content"
         android:layout_height="149dp"
         class="com.rit.sfp.teachboard.WhiteboardView"
@@ -130,7 +130,11 @@
                             android:text="Public"
                             android:ems="10"
                             android:id="@+id/boardStatus" />
-
+                        <Button
+                            android:text="View Data"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/showData" />
                         <Button
                             android:text="Create Board"
                             android:layout_width="match_parent"
@@ -142,11 +146,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/showDatabase" />
-                        <Button
-                            android:text="View Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/showData" />
+
                     </LinearLayout>
                  <!--
                  </ScrollView>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by steve on 11/27/2016.
@@ -79,15 +80,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean saveBoardAsImage(int boardId, int userId, byte[] byteArray){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(TBD_COL_1,boardId);
-        contentValues.put(TBD_COL_2,userId);
-        contentValues.put(TBD_COL_3, byteArray);
-        long result = db.insert(TEACHBOARD_DATA, null, contentValues);
-        if(result == -1){
-            return false;
-        }else{
-            return true;
+        //Check to see if drawable already exists in the database before entering it
+        Cursor res = db.rawQuery("SELECT * FROM " + TEACHBOARD_DATA +" WHERE " + TBD_COL_1+" = " +boardId,null);
+        if(res.getCount() == 1){
+            Log.i("Byte Syntax","Byte array: " +byteArray.toString());
+            Log.i("boardUId","boadId:" + boardId);
+            ContentValues updateValues = new ContentValues();
+            updateValues.put(TBD_COL_3,byteArray);
+          int success =  db.update(TEACHBOARD_DATA,updateValues,null,null);
+            if(success == 1){
+                Log.i("SUCCESS","UPDATE");
+                return true;
+            }else{
+                Log.i("FAIL","UPDATE");
+                return false;
+            }
+
+        }else {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(TBD_COL_1, boardId);
+            contentValues.put(TBD_COL_2, userId);
+            contentValues.put(TBD_COL_3, byteArray);
+            long result = db.insert(TEACHBOARD_DATA, null, contentValues);
+            if (result == -1) {
+                Log.i("SUCCESS", "INSERT");
+                return false;
+            } else {
+                Log.i("FAIL", "INSERT");
+                return true;
+            }
         }
     }
 }

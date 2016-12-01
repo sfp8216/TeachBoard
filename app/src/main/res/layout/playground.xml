@@ -1,12 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <include
-       android:id="@+id/tool_bar_bottom"
-       layout="@layout/toolbar"/>
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    tools:context="com.rit.sfp.teachboard.MainActivity" >
     <LinearLayout
-        android:layout_above="@id/toolbar_bottom"
+        android:id = "@+id/Everything"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <!-- other actual layout stuff here EVERYTHING HERE -->
+        <com.rit.sfp.teachboard.WhiteboardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.rit.sfp.teachboard.WhiteboardView"
+            android:id="@+id/whiteBoardView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:adjustViewBounds="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/overlay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+
+        <Button
+            android:text="Chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showChatBtn"
+            android:layout_weight="1"/>
+
+        <Button
+            android:text="Tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showToolsBtn"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chatFragment"
+        android:layout_gravity="bottom">
+
+    </GridLayout>
+
+    
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolsFragment"
+        android:layout_gravity="bottom">
+
+    </GridLayout>
+
+
+</FrameLayout>

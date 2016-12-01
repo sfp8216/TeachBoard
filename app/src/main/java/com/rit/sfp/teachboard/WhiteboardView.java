@@ -56,7 +56,8 @@ public class WhiteboardView extends ImageView{
         if(!isInEditMode()) {
             myDb = new DatabaseHelper(getContext());
         }
-        Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+      //  Log.i("Height of whiteboard", "Height: " + whiteBoardView.getMaxHeight());
         whiteBoardView.setBackground(new BitmapDrawable(getResources(),bitmap));
     }
 

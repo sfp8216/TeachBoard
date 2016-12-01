@@ -4,14 +4,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
-    <item
-        android:id="@+id/toolbar_chat_btn"
-        android:orderInCategory="100"
-        android:title="@string/toolbar_chat"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/toolbar_tools_btn"
-        android:orderInCategory="200"
-        app:showAsAction="always"
-        android:title="@string/toolbar_tools"></item>
+    <item android:id="@+id/expand_menu"
+        android:title="Show More Options"
+        android:icon="@mipmap/ic_menu"
+        app:showAsAction="always">
+    <menu>
+        <item
+            android:id="@+id/clearBoardBtn"
+            android:orderInCategory="100"
+            android:title="Clear Board"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/settingsBtn"
+            android:orderInCategory="200"
+            android:title="Settings"></item>
+        <item
+            android:id="@+id/loadImgBtn"
+            android:orderInCategory="300"
+            app:showAsAction="ifRoom"
+            android:title="Load Image"></item>
+        <item
+            android:id="@+id/saveImgBtn"
+            android:orderInCategory="400"
+            app:showAsAction="ifRoom"
+            android:title="Save Image"></item>
+        <item
+            android:id="@+id/checkDataBtn"
+            android:orderInCategory="500"
+            app:showAsAction="ifRoom"
+            android:title="Check Data"></item>
+    </menu>
+    </item>
+
+
 </menu>

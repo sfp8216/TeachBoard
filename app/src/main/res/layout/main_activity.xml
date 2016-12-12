@@ -3,6 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="Welcome USER"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeMessageTV"
+        android:textSize="24sp"
+        android:textAlignment="center" />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +20,7 @@
         android:text="Join Whiteboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button" />
+        android:id="@+id/joinBoardBtn" />
 
     <Space
         android:layout_width="match_parent"
@@ -25,5 +33,5 @@
         android:text="Create new Whiteboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2" />
+        android:id="@+id/createBoardBtn" />
 </LinearLayout>

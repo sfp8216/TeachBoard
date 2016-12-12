@@ -7,7 +7,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/create_account_view"
         android:padding="20dp">
 
         <TextView
@@ -27,7 +26,6 @@
                 android:text="Email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <EditText
@@ -35,9 +33,10 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/emailTV" />
+                android:id="@+id/emailET" />
 
         </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -47,7 +46,6 @@
                 android:text="Username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/usernameLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <EditText
@@ -55,10 +53,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/usernameTV"
+                android:id="@+id/usernameET"
                 style="@style/Widget.AppCompat.EditText" />
 
         </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -68,7 +67,6 @@
                 android:text="Password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/passwordLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <EditText
@@ -76,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/passwordEV1" />
+                android:id="@+id/passwordET1" />
 
         </LinearLayout>
         <LinearLayout
@@ -88,7 +86,6 @@
                 android:text="Password (Again)"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <EditText
@@ -96,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/passwordEV2" />
+                android:id="@+id/passwordET2" />
 
         </LinearLayout>
 

@@ -38,7 +38,6 @@ public class ChatFragment extends Fragment {
         closeChatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("MEOW", "BYE CHAT");
                 FragmentManager _fm = getFragmentManager();
                 FragmentTransaction _ft = _fm.beginTransaction();
                 ChatFragment chatFragment = (ChatFragment) getFragmentManager().findFragmentById(R.id.chatFragment);

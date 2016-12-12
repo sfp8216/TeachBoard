@@ -15,15 +15,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE = "Teachboard.db";
     public static final String TEACHBOARD_TABLE = "teachboard";
     public static final String TEACHBOARD_DATA = "teachboard_data";
-    public static final String COL_1 = "ID";
-    public static final String COL_2 = "NAME";
-    public static final String COL_3 = "OWNER";
-    public static final String COL_4 = "PUBLIC";
+    public static final String TEACHBOARD_USERS= "teachboard_users";
+    public static final String TEACHBOARD_CHAT= "teachboard_chat";
 
+    public static final String TBT_1 = "ID";
+    public static final String TBT_2 = "NAME";
+    public static final String TBT_3 = "OWNER";
+    public static final String TBT_4 = "PUBLIC";
+    public static final String TBT_5 = "IMAGEBLOB";
+
+    //Data columns
     public static final String TBD_COL_1 = "BOARDID";
     public static final String TBD_COL_2= "USERID";
     public static final String TBD_COL_3 = "IMAGEBLOB";
-
+    //User columns
+    public static final String TBU_1 = "USERID";
+    public static final String TBU_2 = "USERNAME";
+    public static final String TBU_3 = "PASSWORD";
+    public static final String TBU_4 = "EMAIL";
 
 
 
@@ -33,25 +42,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE table " + TEACHBOARD_TABLE + "("+COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_2+" TEXT, "+COL_3+" INTEGER, "+COL_4+" INTEGER)");
-        db.execSQL("CREATE table " + TEACHBOARD_DATA + "("+TBD_COL_1+" INTEGER PRIMARY KEY, "+TBD_COL_2+" INTEGER, "+TBD_COL_3+" BLOB)");
+        db.execSQL("CREATE table " + TEACHBOARD_TABLE + "("+ TBT_1 +" INTEGER PRIMARY KEY AUTOINCREMENT, "+ TBT_2 +" TEXT, "+ TBT_3 +" INTEGER, "+ TBT_4 +" INTEGER, "+TBT_5+" BLOB)");
+        db.execSQL("CREATE table " + TEACHBOARD_USERS + "("+TBU_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TBU_2+ " TEXT UNIQUE, "+TBU_3+" TEXT, "+ TBU_4+" TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TEACHBOARD_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + TEACHBOARD_DATA);
+        db.execSQL("DROP TABLE IF EXISTS " + TEACHBOARD_USERS);
         onCreate(db);
     }
 
+    //Create Board
     public boolean createTeachboard(String name, String owner, String boardStatus){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2,name);
-        contentValues.put(COL_3,owner);
-        contentValues.put(COL_4,boardStatus);
+        contentValues.put(TBT_2,name);
+        contentValues.put(TBT_3,owner);
+        contentValues.put(TBT_4,boardStatus);
         long result = db.insert(TEACHBOARD_TABLE,null,contentValues);
         if(result == -1) {
             return false;
@@ -59,11 +70,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
-    public Cursor getImageData(){
+    //Get list of boards
+    public Cursor getAllTeachboards(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT IMAGEBLOB FROM " +TEACHBOARD_DATA,null);
+        Cursor res = db.rawQuery("SELECT * FROM " + TEACHBOARD_TABLE,null);
         return res;
+    }
+
+    public Cursor getImageData(String boardId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT IMAGEBLOB FROM " +TEACHBOARD_TABLE+ " WHERE " + TBT_1+" = "+boardId,null);
+            return res;
     }
 
     public Cursor getAllData(){
@@ -72,22 +89,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getBoardData(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TEACHBOARD_DATA,null);
-        return res;
-    }
-
-    public boolean saveBoardAsImage(int boardId, int userId, byte[] byteArray){
+    public boolean saveBoardAsImage(String boardId, String userId, byte[] byteArray){
         SQLiteDatabase db = this.getWritableDatabase();
         //Check to see if drawable already exists in the database before entering it
-        Cursor res = db.rawQuery("SELECT * FROM " + TEACHBOARD_DATA +" WHERE " + TBD_COL_1+" = " +boardId,null);
+        Cursor res = db.rawQuery("SELECT * FROM " + TEACHBOARD_TABLE +" WHERE " + TBT_1+" = " +boardId,null);
         if(res.getCount() == 1){
-            Log.i("Byte Syntax","Byte array: " +byteArray.toString());
-            Log.i("boardUId","boadId:" + boardId);
             ContentValues updateValues = new ContentValues();
             updateValues.put(TBD_COL_3,byteArray);
-          int success =  db.update(TEACHBOARD_DATA,updateValues,null,null);
+          int success =  db.update(TEACHBOARD_TABLE,updateValues,TBT_1+" = "+boardId,null);
             if(success == 1){
                 Log.i("SUCCESS","UPDATE");
                 return true;
@@ -98,10 +107,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }else {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(TBD_COL_1, boardId);
-            contentValues.put(TBD_COL_2, userId);
             contentValues.put(TBD_COL_3, byteArray);
-            long result = db.insert(TEACHBOARD_DATA, null, contentValues);
+            long result = db.insert(TEACHBOARD_TABLE, null, contentValues);
             if (result == -1) {
                 Log.i("SUCCESS", "INSERT");
                 return false;
@@ -111,4 +118,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
     }
+
+    public void clearBoard(String  boardId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.putNull(TBT_5);
+        db.update(TEACHBOARD_TABLE,contentValues,TBT_1 +"="+boardId,null);
+        Log.i("Database","Cleared Board");
+    }
+
+    /*User Logic */
+    public boolean createAccount(String username, String password, String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TBU_2,username);
+        contentValues.put(TBU_3,password);;
+        contentValues.put(TBU_4,email);
+        long result = db.insert(TEACHBOARD_USERS,null,contentValues);
+        if(result == -1) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public boolean checkLogin(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TEACHBOARD_USERS + " WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'",null);
+        if(res.getCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

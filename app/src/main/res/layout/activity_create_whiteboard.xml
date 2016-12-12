@@ -23,7 +23,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/whiteboardName"
             android:layout_weight="1"
             android:hint="Name"
             android:text="Whiteboard Name"
@@ -57,20 +56,23 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5">
+            android:layout_weight="1.5"
+            android:checkedButton="@+id/publicBtn"
+            android:id="@+id/privacyOptions">
 
             <RadioButton
-                android:text="RadioButton"
+                android:text="Public"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton2"
-                android:layout_weight="1" />
+                android:id="@+id/publicBtn"
+                android:layout_weight="1"
+                android:checked="false" />
 
             <RadioButton
-                android:text="RadioButton"
+                android:text="Private"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton"
+                android:id="@+id/privateBtn"
                 android:layout_weight="1" />
         </RadioGroup>
     </LinearLayout>
@@ -79,5 +81,5 @@
         android:text="Continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3" />
+        android:id="@+id/confirmBoardCreateBtn" />
 </LinearLayout>

@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">TeachBoard</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="toolbar_chat">Chat</string>
-    <string name="toolbar_tools">Tools</string>
     <string name="username_placeholder">Enter Username</string>
     <string name="password_placeholder">Enter Password</string>
 </resources>

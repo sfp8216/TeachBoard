@@ -16,19 +16,19 @@ public class ActivityMain extends AppCompatActivity {
     Button joinBtn, createBtn;
     TextView welcomeUser;
     String username = "USER";
+
     @Override
-    protected  void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        welcomeUser = (TextView)findViewById(R.id.welcomeMessageTV);
-        joinBtn = (Button)findViewById(R.id.joinBoardBtn);
-        createBtn = (Button)findViewById(R.id.createBoardBtn);
+        welcomeUser = (TextView) findViewById(R.id.welcomeMessageTV);
+        joinBtn = (Button) findViewById(R.id.joinBoardBtn);
+        createBtn = (Button) findViewById(R.id.createBoardBtn);
         username = getIntent().getStringExtra("Username");
-        if(username != "USER"){
-            welcomeUser.setText("Welcome " + username +"!");
+        if (username != "USER") {
+            welcomeUser.setText("Welcome " + username + "!");
         }
-
 
 
         //temp intent holders
@@ -37,11 +37,11 @@ public class ActivityMain extends AppCompatActivity {
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),WhiteboardActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WhiteboardActivity.class);
                 //Temp
-                intent.putExtra("BoardID","1");
+                intent.putExtra("BoardID", "1");
                 //startActivity(intent);
-                intent = new Intent(getApplicationContext(),TeachboardListActivity.class);
+                intent = new Intent(getApplicationContext(), TeachboardListActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,15 +49,14 @@ public class ActivityMain extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),CreateBoardActivity.class);
-                intent.putExtra("Username",username);
+                Intent intent = new Intent(getApplicationContext(), CreateBoardActivity.class);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
 
 
     }
-
 
 
 }

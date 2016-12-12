@@ -15,15 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityMain">
-
-        </activity>
-        <activity android:name=".WhiteboardActivity">
-
-        </activity>
-        <activity android:name=".CreateAccountActivity" android:noHistory="true"></activity>
-        <activity android:name=".CreateBoardActivity" android:noHistory="true"></activity>
-        <activity android:name=".TeachboardListActivity"></activity>
+        <activity android:name=".ActivityMain" />
+        <activity android:name=".WhiteboardActivity" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:noHistory="true" />
+        <activity android:name=".CreateBoardActivity"
+            android:noHistory="true" />
+        <activity android:name=".TeachboardListActivity" />
     </application>
-
 </manifest>

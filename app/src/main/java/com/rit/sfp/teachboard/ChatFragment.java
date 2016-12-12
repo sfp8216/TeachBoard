@@ -1,17 +1,11 @@
 package com.rit.sfp.teachboard;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -26,12 +20,13 @@ import android.widget.Toast;
  */
 
 public class ChatFragment extends Fragment {
-    static final  String[] CHATTEMP = new String[] {"Admin: hi","Bob: Good day","Admin: how are you?","Bob: Im good thanks","Admin: well this was a great coversation","Bob: Yup, have a good day bye!"};
+    static final String[] CHATTEMP = new String[]{"Admin: hi", "Bob: Good day", "Admin: how are you?", "Bob: Im good thanks", "Admin: well this was a great coversation", "Bob: Yup, have a good day bye!"};
     ListView chatListView;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.chat_fragment_layout,container,false);
-        Toast.makeText(getActivity().getApplicationContext(),"CHAT FRAGMENT!!!!",Toast.LENGTH_LONG).show();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.chat_fragment_layout, container, false);
+        Toast.makeText(getActivity().getApplicationContext(), "CHAT FRAGMENT!!!!", Toast.LENGTH_LONG).show();
 
         //Close the chatWindow
         Button closeChatBtn = (Button) v.findViewById(R.id.closeChatViewBtn);
@@ -46,29 +41,24 @@ public class ChatFragment extends Fragment {
         });
 
         //Populatee chat
-         chatListView = (ListView) v.findViewById(R.id.chatListView);
-        ArrayAdapter<String> chat = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,CHATTEMP);
+        chatListView = (ListView) v.findViewById(R.id.chatListView);
+        ArrayAdapter<String> chat = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, CHATTEMP);
         chatListView.setAdapter(chat);
 
 
         //Set OffFocus for editText
         EditText editText = (EditText) v.findViewById(R.id.chatText);
-     //   View.OnFocusChangeListener ofcListener = new MyFocusChangeListener();
+        //   View.OnFocusChangeListener ofcListener = new MyFocusChangeListener();
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                InputMethodManager m = (InputMethodManager)getActivity().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                m.hideSoftInputFromWindow(v.getWindowToken(),0);
+                InputMethodManager m = (InputMethodManager) getActivity().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                m.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
 
 
-
         return v;
     }
-
-
     //More code for Tools here!
-
-
 }

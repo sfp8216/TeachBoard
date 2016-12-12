@@ -8,7 +8,6 @@
         android:text="Create New Whiteboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
         android:layout_margin="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="30sp"
@@ -50,15 +49,13 @@
             android:text="Privacy Options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView5"
             android:layout_weight="0.5" />
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:checkedButton="@+id/publicBtn"
-            android:id="@+id/privacyOptions">
+            android:checkedButton="@+id/publicBtn">
 
             <RadioButton
                 android:text="Public"
@@ -72,7 +69,6 @@
                 android:text="Private"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/privateBtn"
                 android:layout_weight="1" />
         </RadioGroup>
     </LinearLayout>

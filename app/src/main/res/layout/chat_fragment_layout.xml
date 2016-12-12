@@ -7,8 +7,7 @@
     android:columnCount="1"
     android:background="@android:color/holo_blue_light"
     android:clickable="true"
-    android:focusableInTouchMode="true"
-    android:id="@+id/chatView">
+    android:focusableInTouchMode="true">
 
     <Button
         android:text="x"

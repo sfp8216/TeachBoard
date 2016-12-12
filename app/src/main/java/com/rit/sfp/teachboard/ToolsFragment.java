@@ -6,9 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,26 +20,27 @@ import android.widget.PopupWindow;
  * Created by steve on 12/1/2016.
  */
 
-public class ToolsFragment extends Fragment{
+public class ToolsFragment extends Fragment {
     TeachboardView teachBoardView;
     boolean eraseStatus = false;
+
     @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.tools_fragment_layout,container,false);
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.tools_fragment_layout, container, false);
         Button closeToolsBtn = (Button) v.findViewById(R.id.closeToolsViewBtn);
         Button downSizeBtn = (Button) v.findViewById(R.id.downSizeBtn);
         final Button colorBtn = (Button) v.findViewById(R.id.colorBtn);
         final Button eraseBtn = (Button) v.findViewById(R.id.eraseBtn);
         Button upSizeBtn = (Button) v.findViewById(R.id.upSizeBtn);
 
-        teachBoardView = (TeachboardView)getActivity().findViewById(R.id.teachBoardView);
+        teachBoardView = (TeachboardView) getActivity().findViewById(R.id.teachBoardView);
         closeToolsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            FragmentManager _fm = getFragmentManager();
-            FragmentTransaction _ft = _fm.beginTransaction();
-            ToolsFragment toolsFragment = (ToolsFragment) getFragmentManager().findFragmentById(R.id.toolsFragment);
-            _ft.remove(toolsFragment).commit();
+                FragmentManager _fm = getFragmentManager();
+                FragmentTransaction _ft = _fm.beginTransaction();
+                ToolsFragment toolsFragment = (ToolsFragment) getFragmentManager().findFragmentById(R.id.toolsFragment);
+                _ft.remove(toolsFragment).commit();
             }
         });
 
@@ -61,27 +60,27 @@ public class ToolsFragment extends Fragment{
         eraseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(eraseStatus == false) {
+                if (eraseStatus == false) {
                     teachBoardView.erase();
-                   eraseStatus = true;
-                }else{
-                   eraseStatus = false;
+                    eraseStatus = true;
+                } else {
+                    eraseStatus = false;
                     teachBoardView.unErase();
                 }
             }
         });
         //Color popup
-        LayoutInflater popupInflater = (LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View popupView = popupInflater.inflate(R.layout.color_popup_layout,null);
+        LayoutInflater popupInflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = popupInflater.inflate(R.layout.color_popup_layout, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      //  popupWindow.showAtLocation(popupView,Gravity.CENTER,0,0);
+        //  popupWindow.showAtLocation(popupView,Gravity.CENTER,0,0);
 
         colorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                popupWindow.showAtLocation(v, Gravity.LEFT,0,0);
-                  registerForContextMenu(colorBtn);
-                    getActivity().openContextMenu(colorBtn);
+                registerForContextMenu(colorBtn);
+                getActivity().openContextMenu(colorBtn);
 
                 teachBoardView.turnWhite();
             }
@@ -107,7 +106,7 @@ public class ToolsFragment extends Fragment{
                 teachBoardView.changeColor(Color.RED);
                 break;
             case "Orange":
-                teachBoardView.changeColor(Color.rgb(255,85,0));
+                teachBoardView.changeColor(Color.rgb(255, 85, 0));
                 break;
             case "Yellow":
                 teachBoardView.changeColor(Color.YELLOW);

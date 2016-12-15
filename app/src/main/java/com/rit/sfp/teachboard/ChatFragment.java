@@ -26,7 +26,6 @@ public class ChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.chat_fragment_layout, container, false);
-        Toast.makeText(getActivity().getApplicationContext(), "CHAT FRAGMENT!!!!", Toast.LENGTH_LONG).show();
 
         //Close the chatWindow
         Button closeChatBtn = (Button) v.findViewById(R.id.closeChatViewBtn);

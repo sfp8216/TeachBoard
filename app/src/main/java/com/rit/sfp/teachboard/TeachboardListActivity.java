@@ -82,7 +82,8 @@ public class TeachboardListActivity extends Activity {
     protected void onResume() {
         super.onResume();
         TeachboardAdapter adapter = (TeachboardAdapter) teachBoardList.getAdapter();
-        adapter.notifyDataSetChanged();
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
         boardId.clear();
         boardNames.clear();
         boardPreviews.clear();
@@ -161,7 +162,7 @@ class TeachboardAdapter extends BaseAdapter {
         holder.img = (ImageView) rowView.findViewById(R.id.board_preview);
         Resources res = holder.img.getResources();
         if (imageId.size() == 0 || imageId.get(0) == null) {
-            holder.img.setBackgroundColor(Color.BLUE);
+            holder.img.setBackgroundColor(Color.WHITE);
         } else {
             holder.img.setBackground(new BitmapDrawable(imageId.get(position)));
         }

@@ -106,11 +106,11 @@ public class WhiteboardActivity extends AppCompatActivity {
                 Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                 teachBoardView.setImageFromDatabase(bm);
                 //Display image loaded
-                Toast.makeText(WhiteboardActivity.this, boardId + " Board loaded", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(WhiteboardActivity.this, boardId + " Board loaded", Toast.LENGTH_SHORT).show();
             } else {
                 Bitmap.Config conf = Bitmap.Config.ARGB_8888;
                 Bitmap bm = Bitmap.createBitmap(100, 100, conf);
-                Toast.makeText(WhiteboardActivity.this, "New board loaded", Toast.LENGTH_SHORT).show();
+               Toast.makeText(WhiteboardActivity.this, "New board loaded", Toast.LENGTH_SHORT).show();
             }
         }
         res.close();

@@ -20,7 +20,7 @@ import android.widget.Toast;
  */
 
 public class ChatFragment extends Fragment {
-    static final String[] CHATTEMP = new String[]{"Admin: hi", "Bob: Good day", "Admin: how are you?", "Bob: Im good thanks", "Admin: well this was a great coversation", "Bob: Yup, have a good day bye!"};
+    static final String[] CHATTEMP = new String[]{"Admin: hi", "Bob: Good day", "Admin: how are you?", "Bob: Im good thanks", "Admin: well this was a great conversation", "Bob: Yup, have a good day bye!"};
     ListView chatListView;
 
     @Override
@@ -60,5 +60,4 @@ public class ChatFragment extends Fragment {
 
         return v;
     }
-    //More code for Tools here!
 }

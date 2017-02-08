@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:columnCount="1"
+    android:background="@android:color/holo_blue_light"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <Button
+        android:text="x"
+        android:layout_width="match_parent"
+        android:id="@+id/closeChatViewBtn"
+        android:layout_gravity="center_horizontal"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@android:color/holo_red_light"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:text="Chat"
+        android:textSize="32dip"
+        android:layout_gravity="center_horizontal" />
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:id="@+id/chatListView"
+        android:layout_height="100dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:stackFromBottom="true">
+
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:focusableInTouchMode="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/chatText"
+            android:layout_weight="1"
+            style="@android:style/Widget.EditText"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:selectAllOnFocus="true" />
+
+    </LinearLayout>
+</GridLayout>

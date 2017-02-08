@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ActivityMain">
+    <item
+        android:title="Show More Options"
+        android:icon="@mipmap/ic_menu"
+        app:showAsAction="always">
+    <menu>
+        <item
+            android:id="@+id/clearBoardBtn"
+            android:orderInCategory="100"
+            android:title="Clear Board"
+            app:showAsAction="always" />
+        <item android:id="@+id/settingsBtn"
+            android:orderInCategory="200"
+            android:title="Settings"
+            android:visible="false"></item>
+        <item
+            android:id="@+id/loadImgBtn"
+            android:orderInCategory="300"
+            app:showAsAction="ifRoom"
+            android:title="Force Load Image"></item>
+        <item
+            android:id="@+id/saveImgBtn"
+            android:orderInCategory="400"
+            app:showAsAction="ifRoom"
+            android:title="Force Save Image"></item>
+        <item
+            android:id="@+id/checkDataBtn"
+            android:orderInCategory="500"
+            app:showAsAction="ifRoom"
+            android:title="Check Databse Data"></item>
+    </menu>
+    </item>
+
+
+</menu>

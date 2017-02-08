@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TeachBoard</string>
+    <string name="username_placeholder">Enter Username</string>
+    <string name="password_placeholder">Enter Password</string>
+</resources>
